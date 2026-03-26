@@ -1,7 +1,7 @@
 // src/js/dashboard.js
 
 // 1. Data Definitions with Base Units
-// Length Base: Metres | Temp Base: Celsius | Volume Base: Litres
+// Length Base: Metres | Temp Base: Celsius | Volume Base: Litres | Weight Base: Kilograms
 const unitData = {
     length: {
         units: ["Metres", "Centimetres", "Inches", "Feet"],
@@ -14,6 +14,10 @@ const unitData = {
     volume: {
         units: ["Litres", "Millilitres", "Gallons"],
         rates: { "Litres": 1, "Millilitres": 0.001, "Gallons": 3.78541 }
+    },
+    weight: {
+        units: ["Kilograms", "Grams", "Pounds", "Ounces"],
+        rates: { "Kilograms": 1, "Grams": 0.001, "Pounds": 0.453592, "Ounces": 0.0283495 }
     }
 };
 
