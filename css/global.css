@@ -1,0 +1,87 @@
+/* src/css/global.css */
+:root {
+    --primary-main: #2563eb;
+    --primary-dark: #1e293b;
+    --primary-light: #f8fafc;
+    --accent-color: #0ea5e9;
+    --white: #ffffff;
+    --grey-text: #64748b;
+    --border-color: #e2e8f0;
+    --background-grey: #f1f5f9;
+    --shadow-lg: 0 10px 25px -5px rgba(0,0,0,0.1);
+    --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    background-color: var(--background-grey);
+    color: var(--primary-dark);
+    min-height: 100vh;
+}
+
+/* THE FIX: Ensures centering for all pages */
+.flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 65px); /* Full height minus navbar */
+    width: 100%;
+    padding: 20px;
+}
+
+.navbar {
+    background-color: var(--white);
+    height: 65px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid var(--border-color);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.nav-container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-logo {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: var(--primary-main);
+    text-decoration: none;
+}
+
+.nav-item.btn-outline {
+    text-decoration: none;
+    color: var(--primary-main);
+    border: 1.5px solid var(--primary-main);
+    padding: 7px 18px;
+    border-radius: 8px;
+    font-weight: 600;
+}
+
+.user-pill {
+    display: inline-flex;
+    align-items: center;
+    background: var(--primary-light);
+    padding: 6px 16px;
+    border-radius: 50px;
+    margin-right: 15px;
+    border: 1px solid var(--border-color);
+}
+#user-display {
+    color: var(--primary-main);
+    font-weight: 700;
+    font-size: 0.9rem;
+}

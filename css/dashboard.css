@@ -1,0 +1,131 @@
+/* src/css/dashboard.css */
+
+/* 1. Straight, clean header - No tilts, no overlaps */
+.welcome-banner {
+    background: var(--primary-main);
+    color: var(--white);
+    text-align: center;
+    padding: 10px 10px;
+}
+
+.welcome-banner h1 {
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin: 0;
+}
+
+/* 2. Natural container - No negative 'top' values */
+.dashboard-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+.section-title {
+    font-weight: 700;
+    font-size: 0.8rem;
+    color: var(--grey-text);
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* 3. Simple Category Cards */
+.card-grid {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.type-card {
+    flex: 1;
+    background: var(--white);
+    border-radius: 12px;
+    padding: 30px 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: var(--shadow-sm);
+    border: 2px solid transparent;
+    transition: var(--transition);
+}
+
+.type-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+}
+
+.type-card.active {
+    border-color: var(--primary-main);
+    background-color: #f0f7ff;
+}
+
+.type-card img {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 15px;
+    object-fit: contain;
+}
+
+.type-card span {
+    font-weight: 700;
+    color: var(--grey-text);
+}
+
+.type-card.active span {
+    color: var(--primary-main);
+}
+
+/* 4. Conversion Panel */
+.conversion-panel {
+    display: flex;
+    gap: 20px;
+    background: var(--white);
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: var(--shadow-md);
+}
+
+.input-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.input-container label {
+    font-size: 0.75rem;
+    font-weight: 800;
+    color: var(--primary-main);
+    margin-bottom: 10px;
+}
+
+.input-container input {
+    font-size: 2.2rem;
+    border: none;
+    border-bottom: 2px solid var(--border-color);
+    outline: none;
+    font-weight: 700;
+    color: var(--primary-dark);
+    padding: 5px 0;
+}
+
+.input-container select {
+    margin-top: 15px;
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-weight: 600;
+}
+
+/* 5. Mobile Responsive */
+@media (max-width: 768px) {
+    .card-grid, .conversion-panel {
+        flex-direction: column;
+    }
+    .type-card {
+        flex-direction: row;
+        gap: 20px;
+        padding: 15px 25px;
+    }
+}

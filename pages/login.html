@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Quantity Measurement</title>
+    <link rel="stylesheet" href="../css/global.css">
+    <link rel="stylesheet" href="../css/login.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo">Quant-ment</a>
+            <div class="nav-links">
+                <a href="signup.html" class="nav-item btn-outline">Signup</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="flex-center">
+        <div class="auth-card">
+            <div class="info-section">
+                <div class="image-box">
+                    <img src="../assets/images/signup-illustrations.svg" alt="Illustration">
+                </div>
+                <h3>Welcome Back</h3>
+                <p style="color: var(--grey-text); font-size: 0.9rem; margin-top: 10px;">Login to access your dashboard.</p>
+            </div>
+
+            <div class="form-section">
+                <div class="tab-header">
+                    <a href="#" class="tab-link active">LOGIN</a>
+                    <a href="signup.html" class="tab-link">SIGNUP</a>
+                </div>
+
+                <form id="loginForm">
+                    <div class="input-group">
+                        <label>Email Address</label>
+                        <input type="email" id="email" placeholder="Enter your email" required>
+                    </div>
+                    <div class="input-group">
+                        <label>Password</label>
+                        <input type="password" id="password" placeholder="Enter your password" required>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">Sign In</button>
+                    
+                    <div class="divider"><span>OR</span></div>
+                    
+                    <button type="button" class="google-btn" onclick="handleGoogleLogin()">
+                        <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" width="18" style="margin-right:10px;">
+                        Continue with Google
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="../js/login.js"></script>
+</body>
+</html>

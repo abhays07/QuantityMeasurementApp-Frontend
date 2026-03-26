@@ -1,0 +1,117 @@
+/* src/css/signup.css */
+
+.auth-card {
+    background-color: var(--white);
+    display: flex;
+    width: 100%;
+    max-width: 950px;
+    min-height: 600px;
+    border-radius: 24px;
+    box-shadow: var(--shadow-lg);
+    overflow: hidden;
+    margin: 20px;
+}
+
+.info-section {
+    flex: 1;
+    background: linear-gradient(135deg, #eff6ff, #dbeafe);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 60px;
+    text-align: center;
+}
+
+.image-box img {
+    width: 100%;
+    max-width: 320px;
+    margin-bottom: 30px;
+    filter: drop-shadow(0 10px 15px rgba(37, 99, 235, 0.1));
+}
+
+.info-section h3 {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--primary-dark);
+}
+
+.form-section {
+    flex: 1.2;
+    padding: 60px;
+    background-color: var(--white);
+}
+
+.tab-header {
+    display: flex;
+    gap: 40px;
+    margin-bottom: 40px;
+}
+
+.tab-link {
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--grey-text);
+    padding-bottom: 8px;
+    transition: var(--transition);
+}
+
+.tab-link.active {
+    color: var(--primary-main);
+    border-bottom: 3px solid var(--primary-main);
+}
+
+.input-group {
+    margin-bottom: 22px;
+}
+
+.input-group label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--primary-dark);
+}
+
+.input-group input {
+    width: 100%;
+    padding: 14px;
+    border: 1.5px solid var(--border-color);
+    border-radius: 12px;
+    font-size: 0.95rem;
+    outline: none;
+    transition: var(--transition);
+}
+
+.input-group input:focus {
+    border-color: var(--primary-main);
+    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+}
+
+.submit-btn {
+    background-color: var(--primary-main);
+    color: var(--white);
+    border: none;
+    width: 100%;
+    padding: 16px;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    margin-top: 15px;
+    box-shadow: 0 4px 14px rgba(37, 99, 235, 0.3);
+    transition: var(--transition);
+}
+
+.submit-btn:hover {
+    background-color: #1d4ed8;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
+}
+
+@media (max-width: 850px) {
+    .auth-card { flex-direction: column; max-width: 450px; }
+    .info-section { padding: 40px; }
+    .form-section { padding: 40px; }
+}

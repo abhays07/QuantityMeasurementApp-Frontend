@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup - Quantity Measurement</title>
+    <link rel="stylesheet" href="../css/global.css">
+    <link rel="stylesheet" href="../css/signup.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo">Quant-ment</a>
+            <div class="nav-links">
+                <a href="login.html" class="nav-item btn-outline">Login</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="flex-center">
+        <div class="auth-card">
+            <div class="info-section">
+                <div class="image-box">
+                    <img src="../assets/images/signup-illustrations.svg" alt="Illustration">
+                </div>
+                <h3>Start Measuring Smarter</h3>
+                <p style="color: var(--grey-text); font-size: 0.9rem; margin-top: 10px;">Join 1000+ users tracking quantities accurately.</p>
+            </div>
+
+            <div class="form-section">
+                <div class="tab-header">
+                    <a href="login.html" class="tab-link">LOGIN</a>
+                    <a href="#" class="tab-link active">SIGNUP</a>
+                </div>
+
+                <form id="signupForm">
+                    <div class="input-group">
+                        <label>Full Name</label>
+                        <input type="text" id="name" placeholder="Enter your full name" required>
+                    </div>
+                    <div class="input-group">
+                        <label>Email Address</label>
+                        <input type="email" id="email" placeholder="name@example.com" required>
+                    </div>
+                    <div class="input-group">
+                        <label>Password</label>
+                        <input type="password" id="password" placeholder="Min. 8 characters" required>
+                    </div>
+                    <div class="input-group">
+                        <label>Mobile Number</label>
+                        <input type="tel" id="mobile" placeholder="+91 00000 00000">
+                    </div>
+                    <button type="submit" class="submit-btn">Create Account</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="../js/signup.js"></script>
+</body>
+</html>

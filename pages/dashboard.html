@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard - Quantity Measurement</title>
+    <link rel="stylesheet" href="../css/global.css" />
+    <link rel="stylesheet" href="../css/dashboard.css" />
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="nav-container">
+        <a href="#" class="nav-logo">Quant-Ment</a>
+        <div class="nav-links">
+          <div class="user-pill">
+            <span id="user-display"></span>
+          </div>
+          <button onclick="logout()" class="nav-item btn-outline">
+            Logout
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <header class="welcome-banner">
+      <h1>Welcome To Quantity Measurement</h1>
+    </header>
+
+    <main class="dashboard-container">
+      <section class="type-selection">
+        <p class="section-title">CHOOSE TYPE</p>
+        <div class="card-grid">
+          <div class="type-card active" data-type="length">
+            <img src="../assets/images/length-icon.svg" alt="Length" />
+            <span>Length</span>
+          </div>
+          <div class="type-card" data-type="temperature">
+            <img
+              src="../assets/images/temperature-icon.svg"
+              alt="Temperature"
+            />
+            <span>Temperature</span>
+          </div>
+          <div class="type-card" data-type="volume">
+            <img src="../assets/images/volume-icon.svg" alt="Volume" />
+            <span>Volume</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="conversion-panel">
+        <div class="input-container">
+          <label>FROM</label>
+          <input type="number" id="from-value" value="1" />
+          <select id="from-unit"></select>
+        </div>
+
+        <div class="input-container">
+          <label>TO</label>
+          <input type="number" id="to-value" readonly placeholder="Result" />
+          <select id="to-unit"></select>
+        </div>
+      </section>
+    </main>
+
+    <script src="../js/dashboard.js"></script>
+  </body>
+</html>
