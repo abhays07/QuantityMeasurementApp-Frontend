@@ -1,16 +1,17 @@
-import React, { useReducer, useRef, useEffect } from 'react';
+import React, { useReducer, useRef, useEffect, useCallback, useState } from 'react';
 import { DashboardLayout } from '../layouts/DashboardLayout';
 import { CategoryPicker } from '../components/dashboard/CategoryPicker';
 import { CalculatorCard } from '../components/dashboard/CalculatorCard';
 import { ResultDisplay } from '../components/dashboard/ResultDisplay';
+import { HistorySection } from '../components/dashboard/HistorySection';
 import { Alert } from '../components/common/Alert';
 import { LoadingSpinner } from '../components/common/LoadingSpinner';
 import { useAuth } from '../hooks/useAuth';
 import { useNotification } from '../hooks/useNotification';
 import { useApi } from '../hooks/useApi';
-import { DEFAULT_UNITS } from '../constants';
-import { addQuantities, subtractQuantities, compareQuantities, convertQuantity } from '../services/api';
-import type { QuantityCategory, QuantityInput } from '../types';
+import { DEFAULT_UNITS, STORAGE_KEYS } from '../constants';
+import { addQuantities, subtractQuantities, compareQuantities, convertQuantity, getHistory } from '../services/api';
+import type { QuantityCategory, QuantityInput, QuantityMeasurementEntity } from '../types';
 
 interface CalculatorState {
   category: QuantityCategory;
@@ -75,10 +76,14 @@ function calculatorReducer(state: CalculatorState, action: Action): CalculatorSt
 }
 
 const Dashboard: React.FC = () => {
-  const { isLoading: authLoading } = useAuth();
+  const { isLoading: authLoading, isAuthenticated } = useAuth();
   const { error: notifyError } = useNotification();
   const [state, dispatch] = useReducer(calculatorReducer, initialState);
   const resultRef = useRef<HTMLDivElement>(null);
+
+  // History state
+  const [history, setHistory] = useState<QuantityMeasurementEntity[]>([]);
+  const [isHistoryLoading, setIsHistoryLoading] = useState(false);
 
   // Auto-scroll to result when it's displayed
   useEffect(() => {
@@ -88,6 +93,41 @@ const Dashboard: React.FC = () => {
       }, 100);
     }
   }, [state.calcResult, state.isEqual]);
+
+  // Fetch history from backend if authenticated
+  const fetchHistory = useCallback(async () => {
+    const token = localStorage.getItem(STORAGE_KEYS.TOKEN);
+    if (!token) {
+      setHistory([]);
+      return;
+    }
+
+    setIsHistoryLoading(true);
+    try {
+      const response = await getHistory();
+      setHistory(response.data || []);
+    } catch (error) {
+      console.error('Failed to fetch history:', error);
+      // If token is invalid, clear it
+      if ((error as any).response?.status === 401) {
+        localStorage.removeItem(STORAGE_KEYS.TOKEN);
+        localStorage.removeItem(STORAGE_KEYS.USER);
+        localStorage.removeItem(STORAGE_KEYS.IS_LOGGED_IN);
+        setHistory([]);
+      }
+    } finally {
+      setIsHistoryLoading(false);
+    }
+  }, []);
+
+  // Fetch history on component mount if authenticated
+  useEffect(() => {
+    if (isAuthenticated) {
+      fetchHistory();
+    } else {
+      setHistory([]);
+    }
+  }, [isAuthenticated, fetchHistory]);
 
   // API hooks
   const { execute: executeAdd, isLoading: addLoading } = useApi(addQuantities);
@@ -123,9 +163,17 @@ const Dashboard: React.FC = () => {
       if (state.selectedOperation === 'add') {
         const result = await executeAdd(payload);
         dispatch({ type: 'SET_RESULT', payload: { result: `${result.value} ${result.unit}`, isEqual: null } });
+        // Refresh history if user is authenticated
+        if (isAuthenticated) {
+          await fetchHistory();
+        }
       } else if (state.selectedOperation === 'subtract') {
         const result = await executeSubtract(payload);
         dispatch({ type: 'SET_RESULT', payload: { result: `${result.value} ${result.unit}`, isEqual: null } });
+        // Refresh history if user is authenticated
+        if (isAuthenticated) {
+          await fetchHistory();
+        }
       } else if (state.selectedOperation === 'compare') {
         const result = await executeCompare(payload);
         dispatch({ type: 'SET_RESULT', payload: { result: null, isEqual: result } });
@@ -185,6 +233,14 @@ const Dashboard: React.FC = () => {
       <div ref={resultRef}>
         <ResultDisplay result={state.calcResult} isEqual={state.isEqual} />
       </div>
+
+      {/* History Section - Shows guest CTA or history table */}
+      <HistorySection
+        isAuthenticated={isAuthenticated}
+        history={history}
+        isLoading={isHistoryLoading}
+        onRefresh={fetchHistory}
+      />
     </DashboardLayout>
   );
 };

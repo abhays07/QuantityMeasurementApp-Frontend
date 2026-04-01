@@ -3,11 +3,11 @@ import { AuthProvider } from './contexts/AuthContext';
 import { NotificationProvider } from './contexts/NotificationContext';
 import { ErrorBoundary } from './components/common/ErrorBoundary';
 import { NotificationContainer } from './components/common/NotificationContainer';
-import { ProtectedRoute } from './components/common/ProtectedRoute';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Dashboard from './pages/Dashboard';
 import Home from './pages/Home';
+import OAuthCallback from './pages/OAuthCallback';
 import { ROUTES } from './constants';
 
 function App() {
@@ -21,14 +21,10 @@ function App() {
                 <Route path={ROUTES.HOME} element={<Home />} />
                 <Route path={ROUTES.LOGIN} element={<Login />} />
                 <Route path={ROUTES.SIGNUP} element={<Signup />} />
-                <Route
-                  path={ROUTES.DASHBOARD}
-                  element={
-                    <ProtectedRoute>
-                      <Dashboard />
-                    </ProtectedRoute>
-                  }
-                />
+                {/* OAuth callback handler for Google login */}
+                <Route path="/oauth-callback" element={<OAuthCallback />} />
+                {/* Dashboard is now accessible to all users (guest and authenticated) */}
+                <Route path={ROUTES.DASHBOARD} element={<Dashboard />} />
                 <Route path="*" element={<Navigate to={ROUTES.LOGIN} replace />} />
               </Routes>
             </div>

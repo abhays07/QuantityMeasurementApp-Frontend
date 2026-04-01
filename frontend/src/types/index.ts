@@ -37,6 +37,17 @@ export interface QuantityResponse {
   unit: string;
 }
 
+export interface QuantityMeasurementEntity {
+  id?: string;
+  operand1: string;
+  operation: string;
+  operand2: string;
+  result: string;
+  timestamp?: string;
+  status?: string;
+  errorMessage?: string;
+}
+
 // API Response Types
 export interface ApiError {
   message: string;

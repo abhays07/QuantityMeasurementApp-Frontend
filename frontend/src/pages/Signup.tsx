@@ -46,11 +46,21 @@ const Signup: React.FC = () => {
           localStorage.setItem('pendingUserName', values.name);
           notifySuccess('Registration successful! Please login.');
           navigate('/login');
-        } catch (error) {
-          const err = error as Error;
-          const message = err.message || 'Registration failed. Please try again.';
+        } catch (error: any) {
+          // Error from useApi is already parsed with { message, status, data }
+          let message = 'Registration failed. Please try again.';
+          
+          if (error.status === 400) {
+            message = 'Email already exists or invalid data. Please try again.';
+          } else if (error.data?.message) {
+            message = error.data.message;
+          } else if (error.message && error.message !== 'Request failed with status code 400') {
+            message = error.message;
+          }
+          
           setServerError(message);
-          notifyError(message);
+          // Duration 0 means notification won't auto-close - user must close it manually
+          notifyError(message, 0);
         }
       },
     });

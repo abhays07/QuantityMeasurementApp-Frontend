@@ -79,15 +79,36 @@ const Home: React.FC = () => {
             <p className="text-lg md:text-xl text-slate-600 mb-10 max-w-2xl mx-auto leading-relaxed">
               Instantly convert and calculate across Length, Weight, Temperature, and Volume. The unified tool designed for engineers, students, and everybody in between.
             </p>
-            <div className="flex justify-center gap-4">
-              <Button
-                variant="primary"
-                size="lg"
-                className="text-lg px-8 rounded-full shadow-blue-200/50 shadow-lg hover:shadow-blue-300/50 hover:-translate-y-0.5 transition-all"
-                onClick={() => navigate(user ? ROUTES.DASHBOARD : ROUTES.SIGNUP)}
-              >
-                {user ? 'Open Calculator' : 'Start Calculating Now'}
-              </Button>
+            <div className="flex justify-center gap-4 flex-wrap">
+              {user ? (
+                <Button
+                  variant="primary"
+                  size="lg"
+                  className="text-lg px-8 rounded-full shadow-blue-200/50 shadow-lg hover:shadow-blue-300/50 hover:-translate-y-0.5 transition-all"
+                  onClick={() => navigate(ROUTES.DASHBOARD)}
+                >
+                  Open Calculator
+                </Button>
+              ) : (
+                <>
+                  <Button
+                    variant="primary"
+                    size="lg"
+                    className="text-lg px-8 rounded-full shadow-blue-200/50 shadow-lg hover:shadow-blue-300/50 hover:-translate-y-0.5 transition-all"
+                    onClick={() => navigate(ROUTES.LOGIN)}
+                  >
+                    Login
+                  </Button>
+                  <Button
+                    variant="secondary"
+                    size="lg"
+                    className="text-lg px-8 rounded-full border-2 border-blue-600 text-blue-600 hover:bg-blue-50 hover:-translate-y-0.5 transition-all"
+                    onClick={() => navigate(ROUTES.DASHBOARD)}
+                  >
+                    Try as Guest
+                  </Button>
+                </>
+              )}
             </div>
           </div>
         </section>
