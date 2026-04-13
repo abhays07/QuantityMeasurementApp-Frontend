@@ -13,6 +13,7 @@ import { validateLoginForm } from '../utils/validation';
 import { convertValidationErrorsToMap } from '../utils/formValidation';
 import { extractUserFromToken } from '../utils/jwt';
 import { loginUser } from '../services/api';
+import { API_BASE_URL } from '../constants';
 import type { LoginCredentials } from '../types';
 
 const Login: React.FC = () => {
@@ -72,7 +73,7 @@ const Login: React.FC = () => {
 
   const handleGoogleLogin = () => {
     setGoogleLoading(true);
-    window.location.href = 'http://localhost:8080/oauth2/authorization/google';
+    window.location.href = `${API_BASE_URL}/oauth2/authorization/google`;
   };
 
   return (
