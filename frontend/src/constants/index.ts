@@ -1,11 +1,11 @@
 import type { CategoriesData } from '../types';
 
 // API Configuration
-const apiUrl = import.meta.env.VITE_API_URL || 'http://13.232.220.177';
+const apiUrl = import.meta.env.VITE_API_URL || 'http://43.205.228.140.nip.io:8085';
 export const API_BASE_URL = apiUrl;
 
 // Frontend URL for redirects
-export const FRONTEND_URL = import.meta.env.VITE_FRONTEND_URL || 'http://13.232.220.177';
+export const FRONTEND_URL = import.meta.env.VITE_FRONTEND_URL || 'http://43.205.228.140.nip.io';
 export const ROUTES = {
   HOME: '/',
   LOGIN: '/login',
